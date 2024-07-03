@@ -1,0 +1,71 @@
+int WinMain()
+{
+
+    sf::RenderWindow window(sf::VideoMode(640, 480), "Digger", sf::Style::Default);
+
+    sf::Image heroimage;
+    heroimage.loadFromFile("resources/images/hero.png");
+    
+    sf::Texture herotexture;
+    herotexture.loadFromImage(heroimage);
+
+    sf::Sprite herosprite;
+    herosprite.setTexture(herotexture);
+    herosprite.setTextureRect(sf::IntRect(43, 56, -43, 55));
+    herosprite.setPosition(50,52);
+
+    Player player("hero.png", 250, 250, 96.0, 96.0);
+
+    double Curentframe = 0;
+    sf::Clock clock;
+
+    while (window.isOpen())
+    {
+        double time = clock.getElapsedTime().asMicroseconds();
+        clock.restart();
+        time = time / 800;
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+        
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A)) { 
+            Curentframe += 0.005* time;
+            if (Curentframe > 3) Curentframe -= 3;
+            herosprite.setTextureRect(sf::IntRect(43 * int(Curentframe), 55, 43, 55));
+            herosprite.move(-0.2 * time, 0);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+            Curentframe += 0.005 * time;
+            if (Curentframe > 3) Curentframe -= 3;
+            herosprite.setTextureRect(sf::IntRect(43 * int(Curentframe), 0, 43, 55));
+            herosprite.move(0.2 * time, 0);
+        }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+            Curentframe += 0.005 * time;
+            if (Curentframe > 3) Curentframe -= 3;
+            herosprite.setTextureRect(sf::IntRect(50 * int(Curentframe), 166, 50, 55));
+            herosprite.move(0, -0.05);
+        }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S)) { 
+            Curentframe += 0.005 * time;
+            if (Curentframe > 3) Curentframe -= 3;
+            herosprite.setTextureRect(sf::IntRect(50 * int(Curentframe), 112, 50, 55));
+            herosprite.move(0, 0.05);
+        }
+
+
+        
+
+        window.clear();
+        window.draw(herosprite);
+        window.display();
+
+    }
+
+    return 0;
+}

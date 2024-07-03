@@ -1,0 +1,4 @@
+if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A)) { herosprite.move(-0.05, 0); herosprite.setTextureRect(sf::IntRect(0, 56, 43, 55));}
+if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D)) { herosprite.move(0.05, 0); herosprite.setTextureRect(sf::IntRect(43, 56, -43, 55));}
+if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W)){ herosprite.move(0, -0.05); herosprite.setTextureRect(sf::IntRect(0, 166, 50, 55));}
+if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S)) { herosprite.move(0, 0.05); herosprite.setTextureRect(sf::IntRect(0, 112, 43, 55));}
